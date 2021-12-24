@@ -1,0 +1,17 @@
+table
+{
+    tr
+    {
+        @apply border-b border-gray-300;
+
+        td
+        {
+            @apply p-2;
+        }
+    }
+
+    thead th
+    {
+        @apply bg-black text-white p-2;
+    }
+}

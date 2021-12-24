@@ -1,0 +1,12 @@
+.navLinks
+{
+    a:not(:first-child)
+    {
+        @apply pl-2;
+    }
+
+    a:not(:last-child)
+    {
+        @apply pr-2;
+    }
+}

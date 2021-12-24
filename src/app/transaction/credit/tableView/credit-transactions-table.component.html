@@ -1,0 +1,24 @@
+<table class="mt-4 table-auto border border-collapse border-black w-full">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Date of Transaction</th>
+            <th class="text-left">Payor</th>
+            <th class="text-right">Amount</th>
+            <th class="text-center">Category</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let transaction of transactions">
+            <th class="text-center" [ngClass]="{'align-top': transaction.payorEmail}">{{transaction.transactionID}}</th>
+            <td class="text-center" [ngClass]="{'align-top': transaction.payorEmail}">{{transaction.dateOfTransaction | date : 'dd MMMM yyyy'}}</td>
+            <td>
+                <div>{{transaction.payorName}}</div>
+                <div class="text-sm text-gray-700">{{transaction.payorEmail}}</div>
+            </td>
+            <td class="text-right first-letter:mr-0.5" [ngClass]="{'align-top': transaction.payorEmail}">{{transaction.amount | currency : 'INR' : 'symbol' : '1.2-2'}}</td>
+            <td class="text-center" [ngClass]="{'align-top': transaction.payorEmail}">{{transaction.category}}</td>
+        </tr>
+    </tbody>
+</table>

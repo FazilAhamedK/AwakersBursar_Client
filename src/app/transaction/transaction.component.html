@@ -1,0 +1,61 @@
+<h3 class="text-2xl text-center font-semibold tracking-wide">Viewing All Transactions</h3>
+
+<div class="flex flex-col mt-4">
+    <div class="flex justify-end">
+        <div class="flex">
+            <button (click)="preferredType = TransactionType.CREDIT"
+                    class="flex justify-center items-center rounded-l-md border border-r-0 border-green-900 px-2 py-1"
+                    [ngClass]="{'bg-green-900 text-white': preferredType === TransactionType.CREDIT,
+                                'bg-white text-green-900': preferredType === TransactionType.DEBIT}">
+                <svg-graph-rise [style]="'mt-0.5 w-4 h-4 fill-current'"></svg-graph-rise>
+                <span class="ml-1">Credit</span>
+            </button>
+            <button (click)="preferredType = TransactionType.DEBIT"
+                    class="flex justify-center items-center rounded-r-md border border-l-0 border-red-900 px-2 py-1"
+                    [ngClass]="{'bg-red-900 text-white': preferredType === TransactionType.DEBIT,
+                                'bg-white text-red-900': preferredType === TransactionType.CREDIT}">
+                <svg-graph-fall [style]="'mt-0.5 w-4 h-4 fill-current'"></svg-graph-fall>
+                <span class="ml-1">Debit</span>
+            </button>
+        </div>
+
+        <div class="flex ml-4">
+            <button (click)="preferredView = TransactionView.TABLE"
+                    class="flex justify-center items-center rounded-l-md border border-r-0 border-black px-2 py-1"
+                    [ngClass]="{'bg-black text-white': preferredView === TransactionView.TABLE,
+                                'bg-white text-black': preferredView === TransactionView.GRID}">
+                <svg-table [style]="'mt-0.5 w-4 h-4 fill-current'"></svg-table>
+                <span class="ml-1">Table</span>
+            </button>
+            <button (click)="preferredView = TransactionView.GRID"
+                    class="flex justify-center items-center rounded-r-md border border-l-0 border-black px-2 py-1"
+                    [ngClass]="{'bg-black text-white': preferredView === TransactionView.GRID,
+                                'bg-white text-black': preferredView === TransactionView.TABLE}">
+                <svg-grid [style]="'mt-0.5 w-4 h-4 fill-current'"></svg-grid>
+                <span class="ml-1">Grid</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex">
+        <ng-container *ngIf="preferredType === TransactionType.CREDIT">
+            <ng-container *ngIf="preferredView === TransactionView.TABLE">
+                <credit-transactions-table [transactions]="transactions | creditTransactionFilter" class="w-full"></credit-transactions-table>
+            </ng-container>
+        
+            <ng-container *ngIf="preferredView === TransactionView.GRID">
+                <div>Credit Grid is Coming!</div>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="preferredType === TransactionType.DEBIT">
+            <ng-container *ngIf="preferredView === TransactionView.TABLE">
+                <div>Debit Table is Coming!</div>
+            </ng-container>
+        
+            <ng-container *ngIf="preferredView === TransactionView.GRID">
+                <div>Debit Grid is Coming!</div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
